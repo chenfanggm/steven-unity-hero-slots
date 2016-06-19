@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class SlotController : MonoBehaviour
 {
+	// const
 	const int SLOT_STATE_IDLE = 0;
 	const int SLOT_STATE_SPIN = 1;
 	const int SLOT_STATE_STOP = 2;
 	public const float LINE_STOP_INTERVAL = 0.1f;
 
+	// ui
+	public Button spinBtn;
+
+	// property
 	public GameObject cellPrefab;
 	public int cellSpinState = 0;
-
 	public Vector3 firstCellPos = new Vector3 (-2f, -2.5f, 0f);
 	public Vector3 secondCellPos = new Vector3 (-0.6f, -2.5f, 0f);
 	public Vector3 thirdCellPos = new Vector3 (0.8f, -2.5f, 0f);
@@ -42,11 +47,24 @@ public class SlotController : MonoBehaviour
 			if (cells [0].isSpin == true) {
 				StartCoroutine (
 					StopLines (() => {
-						HighlightSlotResults(GetSlotResults ());
+						HighlightSlotResults (GetSlotResults ());
 					}));
 			}
 		}
+	}
 
+	public void SwitchSpin ()
+	{
+		if (cellSpinState == SLOT_STATE_IDLE) {
+			cellSpinState = SLOT_STATE_SPIN;
+		} else if (cellSpinState == SLOT_STATE_SPIN) {
+			cellSpinState = SLOT_STATE_STOP;
+		}
+	}
+
+	public void StopSpin ()
+	{
+		cellSpinState = SLOT_STATE_STOP;
 	}
 
 	IEnumerator StopLines (System.Action callback)
@@ -79,15 +97,15 @@ public class SlotController : MonoBehaviour
 	void HighlightSlotResults (Hashtable slotResults)
 	{
 		foreach (DictionaryEntry result in slotResults) {
-			if (result.Value.Equals(2)) {
+			if (result.Value.Equals (2)) {
 				for (int i = 0; i < cells.Length; i++) {
-					if (cells [i].symbol == (int) result.Key) {
+					if (cells [i].symbol == (int)result.Key) {
 						cells [i].HighLight ();
 					}
 				}
-			} else if (result.Value.Equals(3)) {
+			} else if (result.Value.Equals (3)) {
 				for (int i = 0; i < cells.Length; i++) {
-					if (cells [i].symbol == (int) result.Key) {
+					if (cells [i].symbol == (int)result.Key) {
 						cells [i].SuperHighLight ();
 					}
 				}

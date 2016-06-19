@@ -3,8 +3,9 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
+    <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{29FCF03D-AF09-DF30-622E-D49AAA2BC0B8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -33,56 +34,58 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.XML" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEngine.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Lib\SortingLayer\SortingLayerAttribute.cs" />
-    <Compile Include="Assets\Lib\SortingLayer\SortingLayerExposed.cs" />
-    <Compile Include="Assets\Script\SlotCell.cs" />
-    <Compile Include="Assets\Script\SlotController.cs" />
-    <Compile Include="Assets\Script\Utils.cs" />
-    <None Include="Assets\Lib\DOTween\DOTween43.xml" />
-    <None Include="Assets\Lib\DOTween\DOTween46.xml" />
-    <None Include="Assets\Lib\DOTween\readme.txt" />
-    <None Include="Assets\Lib\DOTween\DOTween50.xml" />
-    <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\..\Applications\Unity\Unity.app\Contents\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>..\..\..\..\Applications\Unity\Unity.app\Contents\UnityExtensions\Unity\Networking\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween">
-      <HintPath>/Users/chen/project/heroslot/Assets/lib/DOTween/DOTween.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween50">
-      <HintPath>/Users/chen/project/heroslot/Assets/lib/DOTween/DOTween50.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween43">
-      <HintPath>/Users/chen/project/heroslot/Assets/lib/DOTween/DOTween43.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween46">
-      <HintPath>/Users/chen/project/heroslot/Assets/lib/DOTween/DOTween46.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween">
-      <HintPath>Assets\Lib\DOTween\DOTween.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween43">
-      <HintPath>Assets\Lib\DOTween\DOTween43.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween46">
-      <HintPath>Assets\Lib\DOTween\DOTween46.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween50">
-      <HintPath>Assets\Lib\DOTween\DOTween50.dll</HintPath>
-    </Reference>
+     <Compile Include="Assets\Lib\SortingLayer\SortingLayerAttribute.cs" />
+     <Compile Include="Assets\Lib\SortingLayer\SortingLayerExposed.cs" />
+     <Compile Include="Assets\Script\Slot\SlotCell.cs" />
+     <Compile Include="Assets\Script\Slot\SlotCellWitch.cs" />
+     <Compile Include="Assets\Script\Slot\SlotController.cs" />
+     <Compile Include="Assets\Script\UI\SpinButton.cs" />
+     <Compile Include="Assets\Script\Utils\Utils.cs" />
+     <None Include="Assets\Lib\DOTween\DOTween43.xml" />
+     <None Include="Assets\Lib\DOTween\DOTween46.xml" />
+     <None Include="Assets\Lib\DOTween\readme.txt" />
+     <None Include="Assets\Lib\DOTween\DOTween50.xml" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween">
+ <HintPath>/Users/chen/project/heroslot/Assets/lib/DOTween/DOTween.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween50">
+ <HintPath>/Users/chen/project/heroslot/Assets/lib/DOTween/DOTween50.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween43">
+ <HintPath>/Users/chen/project/heroslot/Assets/lib/DOTween/DOTween43.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween46">
+ <HintPath>/Users/chen/project/heroslot/Assets/lib/DOTween/DOTween46.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween">
+ <HintPath>/Users/chen/project/heroslot/Assets/Lib/DOTween/DOTween.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween43">
+ <HintPath>/Users/chen/project/heroslot/Assets/Lib/DOTween/DOTween43.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween46">
+ <HintPath>/Users/chen/project/heroslot/Assets/Lib/DOTween/DOTween46.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween50">
+ <HintPath>/Users/chen/project/heroslot/Assets/Lib/DOTween/DOTween50.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -92,4 +95,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
 </Project>
