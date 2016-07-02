@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class FieldController : MonoBehaviour
 {
@@ -11,15 +12,15 @@ public class FieldController : MonoBehaviour
 
 	public int fieldState = 0;
 	public float fieldLeft, fieldRight, fieldBottom, fieldTop;
-
 	public GameObject heroPrefab, monsterPrefab;
 	public float rowWidth, rowHeight;
 	public Vector3 row1, row2, row3;
-	float characterOffsetsY = 0.08f;
+	public ArrayList monsterList = new ArrayList ();
+
+	ArrayList monsterSpawnPosList = new ArrayList ();
+	float characterRowOffsetsY = 0.08f;
 	Hero hero;
 	Vector3 heroSpawnPos;
-	ArrayList monsterList = new ArrayList ();
-	public ArrayList monsterSpawnPosList = new ArrayList ();
 
 	void Start ()
 	{
@@ -34,9 +35,9 @@ public class FieldController : MonoBehaviour
 		// init rows
 		rowWidth = fieldRight - fieldLeft;
 		rowHeight = (fieldTop - fieldBottom) / 3;
-		row1 = new Vector3 (fieldLeft, fieldBottom + characterOffsetsY, 0);
-		row2 = new Vector3 (fieldLeft, row1.y + rowHeight + characterOffsetsY, 0);
-		row3 = new Vector3 (fieldLeft, row2.y + rowHeight + characterOffsetsY, 0);
+		row1 = new Vector3 (fieldLeft, fieldBottom + characterRowOffsetsY, 0);
+		row2 = new Vector3 (fieldLeft, row1.y + rowHeight + characterRowOffsetsY, 0);
+		row3 = new Vector3 (fieldLeft, row2.y + rowHeight + characterRowOffsetsY, 0);
 
 		// init hero
 		heroSpawnPos = row2 + new Vector3 (1f, 0, 0);
