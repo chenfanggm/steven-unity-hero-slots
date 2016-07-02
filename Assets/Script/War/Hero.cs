@@ -7,37 +7,23 @@ public class Hero : MonoBehaviour {
 	public float posX, posY;
 	public int row;
 	public int hp;
-	public float attackRadius;
 	public int attackDamage;
+	public float spellRadius;
+	public float attackCoolDown;
+	public float lastAttackTime;
+	public float timeSinceLastAttack;
 	public FieldController fieldController;
-	ArrayList monsterList;
-
-	public int pointsPerFood = 10;
-	public int pointsPerSoda = 20;
-	public float restartLevelDelay = 1f;
-	public Text foodText;
-	public AudioClip moveSound1;
-	public AudioClip moveSound2;
-	public AudioClip eatSound1;
-	public AudioClip eatSound2;
-	public AudioClip drinkSound1;
-	public AudioClip drinkSound2;
-	public AudioClip gameOverSound;
-
-	private Animator animator;
-	private Vector2 touchOrigin = -Vector2.one;
-    private float coolDown;
-    private float lastAttackTime;
+	public ArrayList monsterList;
+	Animator animator;
 
 	void Start () {
 		posX = this.transform.position.x;
 		posY = this.transform.position.y;
 		hp = 100;
 		attackDamage = 20;
-
-
-        coolDown = 1.0f;
-        lastAttackTime = Time.time;
+		spellRadius = 10f;
+		attackCoolDown = 1.5f;
+		lastAttackTime = Time.time;
 		animator = GetComponent<Animator> ();
 
 		// find field controller
@@ -48,9 +34,17 @@ public class Hero : MonoBehaviour {
 	void Update () {
 		this.posX = this.transform.position.x;
 
+		// auto attacking
+		timeSinceLastAttack = Time.time - lastAttackTime;
+		if (timeSinceLastAttack - attackCoolDown > 0) {
+			DoAttack ();
+			timeSinceLastAttack = 0;
+			lastAttackTime = Time.time;
+		}
+
 		// handle input
 		if (Input.GetKeyDown ("space")) {
-			DoAttack ();
+			DoSpell ();
 		}
 	}
 
@@ -82,7 +76,47 @@ public class Hero : MonoBehaviour {
 	}
 
 	void DoSpell () {
-		
+		if (monsterList.Count > 0) {
+			// get closest monster
+			Monster minDistanceMonster = null;
+			float minDistance = 100f;
+			for (int i = 0; i < monsterList.Count; i++) {
+				Monster monster = (Monster) monsterList [i];
+				if (minDistanceMonster == null) {
+					minDistance = Mathf.Abs(this.posX - monster.posX);
+					minDistanceMonster = monster;
+				} else {
+					float distance = Mathf.Abs (this.posX - monster.posX);
+					if (distance < minDistance) {
+						minDistance = distance;
+						minDistanceMonster = monster;
+					}
+				}
+			}
+
+			// get monster in the attacking radius
+			if (minDistanceMonster != null) {
+				ArrayList insideRadiusMonsterList = new ArrayList ();
+				insideRadiusMonsterList.Add (minDistanceMonster);
+
+				for (int i = 0; i < monsterList.Count; i++) {
+					Monster monster = (Monster) monsterList [i];
+					float distance = Vector3.Distance (minDistanceMonster.transform.position, monster.transform.position);
+					if ( distance < spellRadius) {
+						insideRadiusMonsterList.Add (monster);
+					}
+				}
+
+				for (int i = 0; i < insideRadiusMonsterList.Count; i++) {
+					Monster monster = (Monster) insideRadiusMonsterList [i];
+					if (monster != null) {
+						monster.CallDoHit (attackDamage, 0f);
+					}
+				}
+			}
+
+			animator.SetTrigger ("HeroAttack");
+		}
 	}
 
 	void DoHit () {

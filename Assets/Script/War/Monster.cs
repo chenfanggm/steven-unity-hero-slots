@@ -51,7 +51,6 @@ public class Monster : MonoBehaviour {
 	}
 
 	void Update (){
-		// lifecycle
 		this.posX = this.transform.position.x;
 
 		// auto attacking
@@ -65,15 +64,13 @@ public class Monster : MonoBehaviour {
 
 	void DoAttack (){
 		animator.SetTrigger ("MonsterAttack");
-		hero.CallDoHit (0.3f);
+		if (hero != null) {
+			hero.CallDoHit (0.3f);
+		}
 	}
 
 	IEnumerator DoHit (int damage, float delayTime) {
 		this.hp -= damage;
-		if (this.hp < 1) {
-			monsterList.Remove (this.gameObject);
-			Destroy (this.gameObject);
-		}
 		yield return new WaitForSeconds (delayTime);
 		//animator.SetTrigger ("MonsterHit");
 	}

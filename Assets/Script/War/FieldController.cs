@@ -8,7 +8,7 @@ public class FieldController : MonoBehaviour
 	const int FIELD_STATE_IDLE = 0;
 	const int FIELD_STATE_START = 1;
 	const int FIELD_STATE_STOP = 2;
-	const float FIELD_MONSTER_SPAWN_INTERVAL = 4f;
+	const float FIELD_MONSTER_SPAWN_INTERVAL = 2f;
 
 	public int fieldState = 0;
 	public float fieldLeft, fieldRight, fieldBottom, fieldTop;
@@ -60,7 +60,14 @@ public class FieldController : MonoBehaviour
 
 	void Update ()
 	{
-		
+		// lifecycle
+		for (int i = 0; i < monsterList.Count; i++) {
+			Monster monster = (Monster) monsterList [i];
+			if (monster.hp < 1) {
+				monsterList.Remove (monster);
+				Destroy (monster.gameObject);
+			}
+		}
 	}
 
 	IEnumerator SpawnMonster (System.Action callback)
@@ -80,10 +87,4 @@ public class FieldController : MonoBehaviour
 		}
 		callback ();
 	}
-
-	void SpawnMonster ()
-	{
-		
-	}
-
 }
