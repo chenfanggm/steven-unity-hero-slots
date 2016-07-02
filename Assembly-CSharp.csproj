@@ -55,7 +55,6 @@
      <Compile Include="Assets\Script\War\FieldController.cs" />
      <Compile Include="Assets\Script\War\Hero.cs" />
      <Compile Include="Assets\Script\War\Monster.cs" />
-     <Compile Include="Assets\Script\War\MovingObject.cs" />
      <None Include="Assets\Lib\DOTween\DOTween43.xml" />
      <None Include="Assets\Lib\DOTween\DOTween46.xml" />
      <None Include="Assets\Lib\DOTween\readme.txt" />

@@ -27,13 +27,14 @@ public class Monster : MonoBehaviour {
 		posX = this.transform.position.x;
 		posY = this.transform.position.y;
 		hp = 50;
+
 		// find hero
 		hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero> ();
 		moveTarget = new Vector3 (hero.posX, posY, 0);
 		moveDistance = this.transform.position.x - moveTarget.x;
 		moveSpeed = 0.1f;
 		moveDuration = moveDistance / moveSpeed;
-		attackCoolDown = 5f;
+		attackCoolDown = 2f;
 		lastAttackTime = Time.time;
 		animator = GetComponent<Animator> ();
 
@@ -44,9 +45,14 @@ public class Monster : MonoBehaviour {
 	void Update (){
 		timeSinceLastAttack = Time.time - lastAttackTime;
 		if (timeSinceLastAttack - attackCoolDown > 0) {
-			animator.SetTrigger ("MonsterAttack");
+			DoAttack ();
 			timeSinceLastAttack = 0;
 			lastAttackTime = Time.time;
 		}
+	}
+
+	void DoAttack (){
+		animator.SetTrigger ("MonsterAttack");
+		hero.CallDoHit (0.3f);
 	}
 }
