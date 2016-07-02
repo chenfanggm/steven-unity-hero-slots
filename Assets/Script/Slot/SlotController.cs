@@ -117,6 +117,8 @@ public class SlotController : MonoBehaviour
 						cells [i].SuperHighLight ();
 					}
 				}
+				// trigger super spell
+				hero.DoSpell ();
 			} 
 		}
 	}
