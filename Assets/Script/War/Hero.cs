@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Hero : MonoBehaviour {
 
@@ -75,7 +76,7 @@ public class Hero : MonoBehaviour {
 		}
 	}
 
-	void DoSpell () {
+	public void DoSpell () {
 		if (monsterList.Count > 0) {
 			// get closest monster
 			Monster minDistanceMonster = null;
@@ -115,6 +116,7 @@ public class Hero : MonoBehaviour {
 				}
 			}
 
+			this.transform.DOPunchScale (new Vector3(0.8f, 0.8f, 0), 0.8f, 3, 0.8f);
 			animator.SetTrigger ("HeroAttack");
 		}
 	}

@@ -22,6 +22,9 @@ public class SlotController : MonoBehaviour
 	Vector3[] cellPos;
 	SlotCell[] cells;
 
+	// other
+	Hero hero;
+
 	void Start ()
 	{		
 		cellPos = new Vector3[] { firstCellPos, secondCellPos, thirdCellPos };
@@ -31,6 +34,9 @@ public class SlotController : MonoBehaviour
 			cells [i] = cell.GetComponent<SlotCell> ();
 			cells [i].SetSymbol (Random.Range (0, 9));
 		}
+
+		// find hero
+		hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero> ();
 	}
 
 	void Update ()
@@ -103,6 +109,8 @@ public class SlotController : MonoBehaviour
 						cells [i].HighLight ();
 					}
 				}
+				// trigger hero spell
+				hero.DoSpell ();
 			} else if (result.Value.Equals (3)) {
 				for (int i = 0; i < cells.Length; i++) {
 					if (cells [i].symbol == (int)result.Key) {
