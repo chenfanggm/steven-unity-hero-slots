@@ -37,9 +37,9 @@ public class FieldController : MonoBehaviour
 
 		// init monster
 		monsterSpawnPosList = new Vector3[] {
-			row1 + new Vector3 (rowWidth - 1f, 0, 0),
-			row2 + new Vector3 (rowWidth - 1f, 0, 0),
-			row3 + new Vector3 (rowWidth - 1f, 0, 0)
+			row1 + new Vector3 (rowWidth, 0, 0),
+			row2 + new Vector3 (rowWidth, 0, 0),
+			row3 + new Vector3 (rowWidth, 0, 0)
 		};
 		for (int i = 0; i < monsterSpawnPosList.Length; i++) {
 			GameObject monsterObj = (GameObject)Instantiate (monsterPrefab, monsterSpawnPosList[i], Quaternion.identity);
