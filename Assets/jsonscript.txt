@@ -1,0 +1,18 @@
+{
+	"waves": 3,
+	"enemyArray": [
+		{
+			"type1": 1,
+			"type2": 2
+		},
+		{
+			"type1": 2,
+			"type2": 1
+		},
+		{
+			"type1": 3,
+			"type2": 0
+		}
+	]
+}
+

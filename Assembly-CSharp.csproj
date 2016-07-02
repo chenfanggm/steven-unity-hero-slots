@@ -52,27 +52,20 @@
      <Compile Include="Assets\Script\Slot\SlotController.cs" />
      <Compile Include="Assets\Script\UI\SpinButton.cs" />
      <Compile Include="Assets\Script\Utils\Utils.cs" />
+     <Compile Include="Assets\Script\War\FieldController.cs" />
+     <Compile Include="Assets\Script\War\Hero.cs" />
+     <Compile Include="Assets\Script\War\Monster.cs" />
+     <Compile Include="Assets\Script\War\MovingObject.cs" />
      <None Include="Assets\Lib\DOTween\DOTween43.xml" />
      <None Include="Assets\Lib\DOTween\DOTween46.xml" />
      <None Include="Assets\Lib\DOTween\readme.txt" />
      <None Include="Assets\Lib\DOTween\DOTween50.xml" />
+     <None Include="Assets\jsonscript.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="DOTween">
- <HintPath>/Users/chen/project/heroslot/Assets/lib/DOTween/DOTween.dll</HintPath>
- </Reference>
- <Reference Include="DOTween50">
- <HintPath>/Users/chen/project/heroslot/Assets/lib/DOTween/DOTween50.dll</HintPath>
- </Reference>
- <Reference Include="DOTween43">
- <HintPath>/Users/chen/project/heroslot/Assets/lib/DOTween/DOTween43.dll</HintPath>
- </Reference>
- <Reference Include="DOTween46">
- <HintPath>/Users/chen/project/heroslot/Assets/lib/DOTween/DOTween46.dll</HintPath>
  </Reference>
  <Reference Include="DOTween">
  <HintPath>/Users/chen/project/heroslot/Assets/Lib/DOTween/DOTween.dll</HintPath>
