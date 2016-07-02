@@ -16,6 +16,10 @@ public class Monster : MonoBehaviour {
 	public float lastAttackTime;
 	public float timeSinceLastAttack;
 
+	// other
+	public FieldController fieldController;
+	ArrayList monsterList;
+
     public bool inRange = false;
 	private Animator animator;
 	private bool skipMove;
@@ -27,6 +31,10 @@ public class Monster : MonoBehaviour {
 		posX = this.transform.position.x;
 		posY = this.transform.position.y;
 		hp = 50;
+
+		// find field controller
+		fieldController = GameObject.FindGameObjectWithTag("FieldController").GetComponent<FieldController> ();
+		monsterList = fieldController.monsterList;
 
 		// find hero
 		hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero> ();
@@ -43,6 +51,10 @@ public class Monster : MonoBehaviour {
 	}
 
 	void Update (){
+		// lifecycle
+		this.posX = this.transform.position.x;
+
+		// auto attacking
 		timeSinceLastAttack = Time.time - lastAttackTime;
 		if (timeSinceLastAttack - attackCoolDown > 0) {
 			DoAttack ();
@@ -54,5 +66,21 @@ public class Monster : MonoBehaviour {
 	void DoAttack (){
 		animator.SetTrigger ("MonsterAttack");
 		hero.CallDoHit (0.3f);
+	}
+
+	IEnumerator DoHit (int damage, float delayTime) {
+		this.hp -= damage;
+		if (this.hp < 1) {
+			monsterList.Remove (this.gameObject);
+			Destroy (this.gameObject);
+		}
+		yield return new WaitForSeconds (delayTime);
+		//animator.SetTrigger ("MonsterHit");
+	}
+
+	public void CallDoHit (int damage, float delayTime) {
+		StartCoroutine (
+			DoHit (damage, delayTime)
+		);
 	}
 }
