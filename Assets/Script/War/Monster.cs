@@ -4,36 +4,35 @@ using DG.Tweening;
 
 public class Monster : MonoBehaviour {
 
+	public float posX, posY;
+	public int hp;
 	Hero hero; 
 	public Vector3 moveTarget;
-
-	public float moveDuration = 7f;
-
-	public int playerDamage;
-
-    public int hp = 50;
+	public float moveDuration;
+	public int attackdamage;
+	public float attackCoolDown;
+	private float lastAttackTime;
 
     public bool inRange = false;
-
 	private Animator animator;
 	private bool skipMove;
-	private float attackCoolDown;
-    private float lastAttackTime;
-	public AudioClip enemyAttack1;
+	public AudioClip enemyAttck1;
 	public AudioClip enemyAttack2;
 
-	public float posX, posY;
-	
 	void Start () {
+		
 		posX = this.transform.position.x;
 		posY = this.transform.position.y;
-		attackCoolDown = 10.0f;
-		lastAttackTime = Time.time;
-		animator = GetComponent<Animator> ();
-
+		hp = 50;
 		// find hero
 		hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero> ();
 		moveTarget = new Vector3 (hero.posX, posY, 0);
+		moveDuration = 30f;
+		attackCoolDown = 10f;
+		lastAttackTime = Time.time;
+		animator = GetComponent<Animator> ();
+
+		// start moving
 		this.transform.DOMove (moveTarget, moveDuration);
 	}
 
