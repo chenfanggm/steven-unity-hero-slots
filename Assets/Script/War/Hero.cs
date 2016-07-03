@@ -33,6 +33,11 @@ public class Hero : MonoBehaviour {
 	}
 
 	void Update () {
+		// wait until game start
+		if (GameController.getInstance().status == GameController.GameStatus.PreGame) {
+			return;
+		}
+
 		this.posX = this.transform.position.x;
 
 		// auto attacking

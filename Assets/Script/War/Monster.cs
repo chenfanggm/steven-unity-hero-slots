@@ -6,7 +6,7 @@ public class Monster : MonoBehaviour {
 
 	public float posX, posY;
 	public int hp;
-	Hero hero; 
+	public bool isMoving = false;
 	public Vector3 moveTarget;
 	public float moveDuration;
 	public float moveSpeed;
@@ -18,7 +18,7 @@ public class Monster : MonoBehaviour {
 
 	// other
 	public FieldController fieldController;
-	ArrayList monsterList;
+	Hero hero; 
 
     public bool inRange = false;
 	private Animator animator;
@@ -34,7 +34,6 @@ public class Monster : MonoBehaviour {
 
 		// find field controller
 		fieldController = GameObject.FindGameObjectWithTag("FieldController").GetComponent<FieldController> ();
-		monsterList = fieldController.monsterList;
 
 		// find hero
 		hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero> ();
@@ -45,14 +44,21 @@ public class Monster : MonoBehaviour {
 		attackCoolDown = 2f;
 		lastAttackTime = Time.time;
 		animator = GetComponent<Animator> ();
-
-		// start moving
-		this.transform.DOMove (moveTarget, moveDuration);
 	}
 
 	void Update (){
-		this.posX = this.transform.position.x;
+		// wait until game start
+		if (GameController.getInstance().status == GameController.GameStatus.PreGame) {
+			return;
+		}
 
+		// start moving
+		if (!isMoving) {
+			this.transform.DOMove (moveTarget, moveDuration);
+			isMoving = true;
+		}
+
+		this.posX = this.transform.position.x;
 		// auto attacking
 		timeSinceLastAttack = Time.time - lastAttackTime;
 		if (timeSinceLastAttack - attackCoolDown > 0) {

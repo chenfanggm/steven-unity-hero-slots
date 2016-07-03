@@ -51,7 +51,6 @@
      <None Include="Assets\Lib\DOTween\DOTween46.xml" />
      <None Include="Assets\Lib\DOTween\readme.txt" />
      <None Include="Assets\Lib\DOTween\DOTween50.xml" />
-     <None Include="Assets\jsonscript.txt" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>

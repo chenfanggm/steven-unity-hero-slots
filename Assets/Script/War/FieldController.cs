@@ -9,6 +9,8 @@ public class FieldController : MonoBehaviour
 	const int FIELD_STATE_START = 1;
 	const int FIELD_STATE_STOP = 2;
 	const float FIELD_MONSTER_SPAWN_INTERVAL = 2f;
+	float ROW_OFFSET_Y = 0.08f;
+
 
 	public int fieldState = 0;
 	public float fieldLeft, fieldRight, fieldBottom, fieldTop;
@@ -16,9 +18,10 @@ public class FieldController : MonoBehaviour
 	public float rowWidth, rowHeight;
 	public Vector3 row1, row2, row3;
 	public ArrayList monsterList = new ArrayList ();
+	public bool isSpawning = false;
 
+	// other
 	ArrayList monsterSpawnPosList = new ArrayList ();
-	float characterRowOffsetsY = 0.08f;
 	Hero hero;
 	Vector3 heroSpawnPos;
 
@@ -35,9 +38,9 @@ public class FieldController : MonoBehaviour
 		// init rows
 		rowWidth = fieldRight - fieldLeft;
 		rowHeight = (fieldTop - fieldBottom) / 3;
-		row1 = new Vector3 (fieldLeft, fieldBottom + characterRowOffsetsY, 0);
-		row2 = new Vector3 (fieldLeft, row1.y + rowHeight + characterRowOffsetsY, 0);
-		row3 = new Vector3 (fieldLeft, row2.y + rowHeight + characterRowOffsetsY, 0);
+		row1 = new Vector3 (fieldLeft, fieldBottom + ROW_OFFSET_Y, 0);
+		row2 = new Vector3 (fieldLeft, row1.y + rowHeight + ROW_OFFSET_Y, 0);
+		row3 = new Vector3 (fieldLeft, row2.y + rowHeight + ROW_OFFSET_Y, 0);
 
 		// init hero
 		heroSpawnPos = row2 + new Vector3 (1f, 0, 0);
@@ -51,15 +54,25 @@ public class FieldController : MonoBehaviour
 
 		fieldState = FIELD_STATE_START;
 
-		// spawning monster
-		StartCoroutine (
-			SpawnMonster (() => {
-			})
-		);
+
 	}
 
 	void Update ()
 	{
+		// wait until game start
+		if (GameController.getInstance().status == GameController.GameStatus.PreGame) {
+			return;
+		}
+
+		// spawning monster
+		if (!isSpawning) {
+			StartCoroutine (
+				SpawnMonster (() => {
+				})
+			);
+			isSpawning = true;
+		}
+
 		// lifecycle
 		for (int i = 0; i < monsterList.Count; i++) {
 			Monster monster = (Monster) monsterList [i];
