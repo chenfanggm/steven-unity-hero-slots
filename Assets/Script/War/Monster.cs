@@ -39,7 +39,7 @@ public class Monster : MonoBehaviour {
 		hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero> ();
 		moveTarget = new Vector3 (hero.posX, posY, 0);
 		moveDistance = this.transform.position.x - moveTarget.x;
-		moveSpeed = 0.1f;
+		moveSpeed = 0.2f;
 		moveDuration = moveDistance / moveSpeed;
 		attackCoolDown = 2f;
 		lastAttackTime = Time.time;

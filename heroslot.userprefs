@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Slot/SlotController.cs">
     <Files>
-      <File FileName="Assets/Script/Slot/SlotController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/Slot/SlotController.cs" Line="19" Column="61" />
       <File FileName="Assets/Script/Slot/SlotCell.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

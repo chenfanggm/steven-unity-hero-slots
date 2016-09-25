@@ -8,8 +8,8 @@ public class FieldController : MonoBehaviour
 	const int FIELD_STATE_IDLE = 0;
 	const int FIELD_STATE_START = 1;
 	const int FIELD_STATE_STOP = 2;
-	const float FIELD_MONSTER_SPAWN_INTERVAL = 2f;
-	float ROW_OFFSET_Y = 0.08f;
+	const float FIELD_MONSTER_SPAWN_INTERVAL = 3f;
+	float ROW_OFFSET_Y = 0f;
 
 
 	public int fieldState = 0;
