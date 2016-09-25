@@ -1,4 +1,4 @@
-# steven-unity-hero-slots
+# Steven Unity3D Game: Hero Slots
 A Hero Slots Game Demo, powered by unity
 
 # Download and Play in Unity3D
